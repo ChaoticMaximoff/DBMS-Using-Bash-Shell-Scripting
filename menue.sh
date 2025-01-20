@@ -1,7 +1,6 @@
 #!/bin/bash
 
 while true; do
-    # Use Zenity to display the menu
     option=$(zenity --list \
         --title="Database Management" \
         --text="Choose an action:" \
@@ -12,7 +11,6 @@ while true; do
         "Drop Database" \
         "Quit")
 
-    # Check user's selection
     case $option in
         "List All Databases")
             ./showDB.sh

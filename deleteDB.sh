@@ -9,8 +9,8 @@ while true; do
     if [ -z "$DataBaseName" ]; then
         zenity --warning \
             --title="Operation Canceled" \
-            --text="No database name entered. Operation canceled."
-        exit 0
+            --text="No database name entered. Please enter a valid database name."
+        continue
     fi
 
     if [ -d "./MyDataBases/$DataBaseName" ]; then

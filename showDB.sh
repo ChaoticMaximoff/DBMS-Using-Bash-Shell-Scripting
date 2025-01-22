@@ -12,5 +12,3 @@ else
         --title="No Databases" \
         --text="No databases are available to show."
 fi
-
-./menue.sh

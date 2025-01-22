@@ -11,6 +11,16 @@ while true; do
         "Drop Database" \
         "Quit")
 
+    # Check if Cancel or dialog close
+    if [ $? -ne 0 ]; then
+        zenity --question --title="Quit Confirmation" --text="Are you sure you want to quit?"
+        if [ $? -eq 0 ]; then
+            exit 0
+        else
+            continue
+        fi
+    fi
+
     case $option in
         "List All Databases")
             ./showDB.sh
@@ -28,9 +38,9 @@ while true; do
             ./deleteDB.sh
             ;;
         "Quit")
-            zenity --question --title="Quit" --text="Are you sure you want to quit?"
+            zenity --question --title="Quit Confirmation" --text="Are you sure you want to quit?"
             if [ $? -eq 0 ]; then
-                exit
+                exit 0
             fi
             ;;
         *)

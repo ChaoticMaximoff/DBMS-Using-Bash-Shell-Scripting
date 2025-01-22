@@ -6,6 +6,13 @@ while true; do
         --text="Enter the database name:" \
         --entry-text="")
 
+    # Check if Cancel was pressed
+    if [ $? -ne 0 ]; then
+        # User pressed Cancel, return to menu
+        ./menue.sh
+        exit
+    fi
+
     if [ -z "$DataBaseName" ]; then
         zenity --warning \
             --title="Operation Canceled" \

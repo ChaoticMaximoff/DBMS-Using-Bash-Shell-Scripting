@@ -26,7 +26,6 @@ while true; do
             ;;
         "Drop Database")
             ./deleteDB.sh
-            zenity --info --title="Delete Database" --text="Database deleted successfully!"
             ;;
         "Quit")
             zenity --question --title="Quit" --text="Are you sure you want to quit?"

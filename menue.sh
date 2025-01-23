@@ -24,14 +24,12 @@ while true; do
     case $option in
         "List All Databases")
             ./showDB.sh
-            zenity --info --title="List Databases" --text="Operation completed!"
             ;;
         "Create New Database")
             ./createDB.sh
             ;;
         "Connect to Database")
             ./connectDB.sh
-            zenity --info --title="Connect to Database" --text="Connected to database!"
             ;;
         "Drop Database")
             ./deleteDB.sh

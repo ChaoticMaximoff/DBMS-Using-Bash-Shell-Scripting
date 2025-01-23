@@ -28,7 +28,6 @@ while true; do
             ;;
         "Create New Database")
             ./createDB.sh
-            zenity --info --title="Create Database" --text="New database created successfully!"
             ;;
         "Connect to Database")
             ./connectDB.sh

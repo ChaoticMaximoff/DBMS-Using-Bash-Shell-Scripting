@@ -50,9 +50,16 @@ while true; do
                 echo hello
                 ;;
             "Return to Databases Menu")
-                echo hello
+                zenity --question --title="Return to Databases Menu" --text="Are you sure you want to return to Databases Menu?"
+                if [ $? -eq 0 ]; then
+                    break
+                fi
                 ;;
             *)
-                echo "Invalid option. Please try again."
+                zenity --question --title="Return to Databases Menu" --text="Are you sure you want to return to Databases Menu?"
+                if [ $? -eq 0 ]; then
+                    break
+                fi
+                ;;
         esac
 done

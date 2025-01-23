@@ -18,7 +18,7 @@ if [[ -d ./MyDataBases/$DataBaseName ]]; then
     zenity --error \
         --title="Database Exists" \
         --text="A database named '$DataBaseName' already exists. Please choose a different name."
-    exec ./creating_database.sh
+    # exec ./creating_database.sh
 else
     mkdir -p ./MyDataBases/"$DataBaseName"
     zenity --info \

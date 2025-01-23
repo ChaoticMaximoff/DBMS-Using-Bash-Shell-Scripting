@@ -21,13 +21,12 @@ if [ -z "$database" ]; then
         --title="Operation Canceled" \
         --text="No database name entered. Returning to the main menu."
     ./menue.sh
-fi
 
-if [[ -d ./MyDataBases/$database ]]; then
+elif [[ -d ./MyDataBases/$database ]]; then
     zenity --info \
         --title="Database Connected" \
         --text="Connected to database '$database'."
-    cd ./MyDataBases/$database 2>/dev/null
+    . ./tableMenu.sh $database
 else
     zenity --error \
         --title="Database Not Found" \

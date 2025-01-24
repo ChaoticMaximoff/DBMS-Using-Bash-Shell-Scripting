@@ -41,7 +41,7 @@ while true; do
                 echo hello
                 ;;
             "Select from Table")
-                echo hello
+                . ../../select.sh $1
                 ;;
             "Delete from Table")
                 echo hello

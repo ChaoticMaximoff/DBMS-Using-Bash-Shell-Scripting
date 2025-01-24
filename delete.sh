@@ -15,13 +15,13 @@ fi
 tablePath="./MyDataBases/$database/$tableName"
 
 # Check if the table exists
-if [[ -f "$tablePath" ]]; then
+if [[ -f $tableName ]]; then
     # Display the success message
     zenity --info --text="Delete from $tableName" --width=300
 else
     # Show error message if the table does not exist
     zenity --error --text="Table '$tableName' does not exist in the database '$database'!" --width=300
-    ./delete.sh "$database"
+    # ./delete.sh "$database"
     exit 1
 fi
 

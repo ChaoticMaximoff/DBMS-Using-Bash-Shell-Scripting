@@ -44,7 +44,7 @@ while true; do
                 . ../../select.sh $1
                 ;;
             "Delete from Table")
-                echo hello
+                . ../../delete.sh $1
                 ;;
             "Update Table")
                 echo hello

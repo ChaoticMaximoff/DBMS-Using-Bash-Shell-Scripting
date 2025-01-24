@@ -32,13 +32,13 @@ while true; do
                 . ../../createTable.sh $1
                 ;;
             "List Tables")
-                echo hello
+                . ../../listTables.sh $1
                 ;;
             "Drop Table")
-                echo hello
+                . ../../dropTable.sh $1
                 ;;
             "Insert into Table")
-                echo hello
+                . ../../insert.sh $1
                 ;;
             "Select from Table")
                 . ../../select.sh $1

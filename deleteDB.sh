@@ -9,8 +9,9 @@ while true; do
     # Check if Cancel was pressed
     if [ $? -ne 0 ]; then
         # User pressed Cancel, return to menu
-        ./menue.sh
-        exit
+        break
+        # ./menue.sh
+        # exit
     fi
 
     if [ -z "$DataBaseName" ]; then

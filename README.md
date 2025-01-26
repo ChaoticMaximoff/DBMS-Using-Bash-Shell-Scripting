@@ -26,4 +26,6 @@ The application will provide to the user this menu:
  - Available datatypes are "*int*" and "*varchar*"
  - The database will be stored as a directory on the current script's file
 
-This project has been made by @ChaoticMaximoff and @AhmedMazenNn
+##
+
+Made by [@ChaoticMaximoff](https://github.com/ChaoticMaximoff) & [@AhmedMazenNn](https://github.com/AhmedMazenNn)

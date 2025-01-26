@@ -18,29 +18,31 @@ fi
 
 if [[ -f $table ]]; then
     zenity --info --title="Table Found" --text="Displaying all records from '$table':"
-    
-    # Process and format the metadata as a table
-    headers=$(awk -F: '{ printf "%-15s", $1 }' .$table-metadata)
-    separator=$(awk -F: '{ printf "---------------  " } END { print "" }' .$table-metadata)
 
-    # Read data from the table and format it
-    data=$(awk -F: '
-        {
-            for (i = 1; i <= NF; i++) 
-                printf "%-15s", $i
-            printf "\n"
-        }
-    ' "$table")
+    # Extract column headers from metadata
+    headers=$(awk -F: '{ printf "%s ", $1 }' .$table-metadata)
 
-    # Combine headers and table data
-    table_content=$(echo -e "$headers\n$separator\n$data")
+    # Prepare the zenity column arguments
+    columns=()
+    for header in $headers; do
+        columns+=(--column="$header")
+    done
 
-    # Display the formatted table using zenity
-    zenity --text-info \
+    # Read the table data and split it into fields
+    data=()
+    while IFS=: read -r line; do
+        [[ -z "$line" ]] && continue  # Skip empty lines
+        IFS=: read -r -a fields <<< "$line"
+        data+=("${fields[@]}")
+    done < "$table"
+
+    # Use zenity --list to display the data
+    zenity --list \
         --title="Table: $table" \
         --width=600 \
         --height=400 \
-        --filename=<(echo "$table_content")
+        "${columns[@]}" \
+        "${data[@]}"
 else
     zenity --error --title="Error" --text="Table '$table' does not exist."
 fi

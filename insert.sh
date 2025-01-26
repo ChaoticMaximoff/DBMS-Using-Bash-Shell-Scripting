@@ -27,7 +27,7 @@ while true; do
 				colPKCheck=`echo $line | cut -d: -f3`
                 colData=$(zenity --entry \
                     --title="Insert Data into $insertInTB" \
-                    --text="Enter data for $colName ($colType):" \
+                    --text="Enter data for $colName ($colType):\n(Note: empty values will be written as "NULL" in the table)" \
                     --entry-text="")
                 
                 if [[ $colType == "int" ]]; then
@@ -37,7 +37,7 @@ while true; do
                             --text="The value must be an integer.\n\nTry again."
                         colData=$(zenity --entry \
                             --title="Insert Data into $insertInTB" \
-                            --text="Enter data for $colName ($colType):" \
+                            --text="Enter data for $colName ($colType):\n(Note: empty values will be written as "NULL" in the table)" \
                             --entry-text="")
                     done
 
@@ -62,6 +62,10 @@ while true; do
                             return  # Continue the outer loop
                         fi
                     done
+                fi
+
+                if [[ $colData == "" ]]; then
+                    colData="NULL"
                 fi
 
                 rowData+=$colData:

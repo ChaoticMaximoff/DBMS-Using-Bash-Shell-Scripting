@@ -24,7 +24,7 @@ The application will provide to the user this menu:
 
 **Extra notes:**
  - Available datatypes are "*int*" and "*varchar*"
- - The database will be stored as a directory on the current script's file
+ - The database will be stored as a directory in the current script's directory
 
 ##
 

@@ -5,7 +5,7 @@ while true; do
     if [ "$(ls)" ]; then
         insertInTB=$(ls | zenity --list \
             --title="Available Tables of $1 Database" \
-            --text="Available Databases:" \
+            --text="Available Tables:" \
             --column="Tables")
 
         if [ -z "$insertInTB" ]; then
@@ -29,6 +29,10 @@ while true; do
                     --title="Insert Data into $insertInTB" \
                     --text="Enter data for $colName ($colType):\n(Note: empty values will be written as "NULL" in the table)" \
                     --entry-text="")
+
+                if [[ $? -ne 0 ]]; then
+                    return
+                fi
                 
                 if [[ $colType == "int" ]]; then
                     while ! [[ $colData =~ ^-?[0-9]*$ ]]; do
@@ -39,6 +43,9 @@ while true; do
                             --title="Insert Data into $insertInTB" \
                             --text="Enter data for $colName ($colType):\n(Note: empty values will be written as "NULL" in the table)" \
                             --entry-text="")
+                        if [[ $? -ne 0 ]]; then
+                            return
+                        fi
                     done
 
 
@@ -68,7 +75,10 @@ while true; do
                     colData="NULL"
                 fi
 
-                rowData+=$colData:
+                rowData+=$colData
+                if [[ $i -lt $colSize ]]; then
+                    rowData+=":"
+                fi
 
             done
             echo $rowData >> $insertInTB

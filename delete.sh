@@ -1,14 +1,22 @@
 #!/bin/bash
 database=$1
 
+AvailableTBs=$(ls | tr '\n' '\n')
+    zenity --info \
+        --title="Available Tables of $1 Database" \
+        --text="Available Tables:\n$AvailableTBs" 2> /dev/null
+
 # Prompt user to enter the table name
 tableName=$(zenity --entry --title="Delete from Table" --text="Enter the table name:" --width=300)
+
+if [[ $? -ne 0 ]]; then
+    return
+fi
 
 # Check if the table name was entered
 if [[ -z $tableName ]]; then
     zenity --error --text="Table name cannot be empty!" --width=300
-    ./delete.sh "$database"
-    exit 0
+    return
 fi
 
 # Construct the absolute path for the table
@@ -22,7 +30,7 @@ else
     # Show error message if the table does not exist
     zenity --error --text="Table '$tableName' does not exist in the database '$database'!" --width=300
     # ./delete.sh "$database"
-    exit 1
+   return
 fi
 
 # Options for the menu
@@ -34,6 +42,10 @@ option=$(zenity --list \
     --text="Please select an action:" \
     --column="Options" "${options[@]}" \
     --width=400 --height=200)
+
+if [[ $? -ne 0 ]]; then
+    return
+fi
 
 # Process the chosen option
 case $option in

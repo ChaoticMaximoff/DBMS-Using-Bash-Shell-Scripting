@@ -42,7 +42,7 @@ if [[ -f $table ]]; then
         --width=600 \
         --height=400 \
         "${columns[@]}" \
-        "${data[@]}"
+        "${data[@]}" > /dev/null
 else
     zenity --error --title="Error" --text="Table '$table' does not exist."
 fi

@@ -1,6 +1,15 @@
+#!/bin/bash
 
+AvailableTBs=$(ls | tr '\n' '\n')
+    zenity --info \
+        --title="Available Tables of $1 Database" \
+        --text="Available Tables:\n$AvailableTBs" 2> /dev/null
 
     Tb_name=$(zenity --entry --text="Please Enter Table Name")
+    if [[ $? -ne 0 ]]; then
+        return
+    fi
+
     if [[ -z $Tb_name || $Tb_name =~ ^[" "]+$ ]]; then
         zenity --error --text="Table Name Can't Be Empty"
         return
@@ -22,6 +31,9 @@
 
     # Display the column names as a list for the user to choose from
     selected_columns=$(zenity --list --title="Select Columns" --column="Columns" --multiple "${columns[@]}")
+    if [[ $? -ne 0 ]]; then
+    return
+    fi
     if [[ -z $selected_columns ]]; then
         zenity --error --text="No columns selected"
         return

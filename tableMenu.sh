@@ -35,10 +35,10 @@ while true; do
                 . ../../listTables.sh $1
                 ;;
             "Drop Table")
-                . ../../dropTable.sh $1
+                . ../../dropTable.sh $1 2> /dev/null
                 ;;
             "Insert into Table")
-                . ../../insert.sh $1
+                . ../../insert.sh $1 2> /dev/null
                 ;;
             "Select from Table")
                 . ../../select.sh $1
@@ -47,7 +47,7 @@ while true; do
                 . ../../delete.sh $1
                 ;;
             "Update Table")
-                . ../../updateTable.sh $1
+                . ../../updateTable.sh $1 2> /dev/null
                 ;;
             "Return to Databases Menu")
                 zenity --question --title="Return to Databases Menu" --text="Are you sure you want to return to Databases Menu?"

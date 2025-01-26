@@ -27,6 +27,10 @@ while true; do
                     condCol=$(awk -F: '{print $1}' .$updateTB-metadata | zenity --list \
                         --text="Select the condition column:" \
                         --column="Columns")
+
+                    if [[ $? -ne 0 ]]; then
+                        return
+                    fi
                     
                     condColMetadata=$(grep $condCol .$updateTB-metadata)
                     condColType=$(echo $condColMetadata | awk -F: '{print $2}')
@@ -89,6 +93,10 @@ while true; do
                         --text="Select a column to update:" \
                         --column="Columns")
                     
+                    if [[ $? -ne 0 ]]; then
+                        return
+                    fi
+                    
                     colMetadata=$(grep $updateCol .$updateTB-metadata)
                     colType=$(echo $colMetadata | awk -F: '{print $2}')
                     colPKCheck=$(echo $colMetadata | awk -F: '{print $3}')
@@ -122,6 +130,9 @@ while true; do
                         --title="Enter New Value" \
                         --text="Enter the new value for $updateCol ($colType) in $updateTB:\n(Note: empty values will be written as "NULL" in the table)" \
                         --entry-text="")
+                    if [[ $? -ne 0 ]]; then
+                        return
+                    fi
 
                     if [[ $colType == "int" ]]; then
                         while ! [[ $newValue =~ ^-?[0-9]*$ ]]; do
@@ -132,6 +143,9 @@ while true; do
                                 --title="Enter New Value" \
                                 --text="Enter the new value for $updateCol ($colType) in $updateTB:\n(Note: empty values will be written as "NULL" in the table)" \
                                 --entry-text="")
+                            if [[ $? -ne 0 ]]; then
+                                return
+                            fi
                         done
                     fi
 
@@ -166,6 +180,10 @@ while true; do
                         --text="Select a column to update:" \
                         --column="Columns")
                     
+                    if [[ $? -ne 0 ]]; then
+                        return
+                    fi
+                    
                     colMetadata=$(grep $updateCol .$updateTB-metadata)
                     colType=$(echo $colMetadata | awk -F: '{print $2}')
                     colPKCheck=$(echo $colMetadata | awk -F: '{print $3}')
@@ -199,6 +217,9 @@ while true; do
                         --title="Enter New Value" \
                         --text="Enter the new value for $updateCol ($colType) in $updateTB:\n(Note: empty values will be written as "NULL" in the table)" \
                         --entry-text="")
+                    if [[ $? -ne 0 ]]; then
+                        return
+                    fi
 
                     if [[ $colType == "int" ]]; then
                         while ! [[ $newValue =~ ^-?[0-9]*$ ]]; do
@@ -209,6 +230,10 @@ while true; do
                                 --title="Enter New Value" \
                                 --text="Enter the new value for $updateCol ($colType) in $updateTB:\n(Note: empty values will be written as "NULL" in the table)" \
                                 --entry-text="")
+
+                            if [[ $? -ne 0 ]]; then
+                                return
+                            fi
                         done
                     fi
 

@@ -3,9 +3,18 @@
 database=$1
 cd ./MyDataBases/$database/ 2>/dev/null
 
+AvailableTBs=$(ls | tr '\n' '\n')
+    zenity --info \
+        --title="Available Tables of $1 Database" \
+        --text="Available Tables:\n$AvailableTBs" 2> /dev/null
+
 table=$(zenity --entry \
     --title="Select Table" \
     --text="Enter the table name to view all records:")
+if [[ $? -ne 0 ]]; then
+    return
+fi
+
 
 if [[ -f $table ]]; then
     zenity --info --title="Table Found" --text="Displaying all records from '$table':"

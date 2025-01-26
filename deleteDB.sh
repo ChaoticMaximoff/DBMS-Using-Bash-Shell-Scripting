@@ -1,6 +1,11 @@
 #!/bin/bash
 
 while true; do
+    AvailableDBs=$(ls ./MyDataBases | tr '\n' '\n')
+    zenity --info \
+        --title="Existing Databases" \
+        --text="Available Databases:\n\n$AvailableDBs"
+
     DataBaseName=$(zenity --entry \
         --title="Delete Database" \
         --text="Enter the database name:" \
@@ -22,7 +27,7 @@ while true; do
     fi
 
     if [ -d "./MyDataBases/$DataBaseName" ]; then
-        rm -r "./MyDataBases/$DataBaseName"
+        rm -r "./MyDataBases/$DataBaseName" 2> /dev/null
         zenity --info \
             --title="Database Deleted" \
             --text="Database '$DataBaseName' was deleted successfully."

@@ -47,7 +47,7 @@ while true; do
                 . ../../delete.sh $1
                 ;;
             "Update Table")
-                echo hello
+                . ../../updateTable.sh $1
                 ;;
             "Return to Databases Menu")
                 zenity --question --title="Return to Databases Menu" --text="Are you sure you want to return to Databases Menu?"

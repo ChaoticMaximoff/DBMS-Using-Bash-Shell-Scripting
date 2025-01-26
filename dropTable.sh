@@ -6,7 +6,7 @@ while true; do
     if [ "$(ls)" ]; then
         deletedTB=$(ls | zenity --list \
             --title="Available Tables of $1 Database" \
-            --text="Available Databases:" \
+            --text="Select a table to drop:" \
             --column="Tables")
         if [ -z "$deletedTB" ]; then
             break
